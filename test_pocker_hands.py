@@ -1,3 +1,4 @@
+import pytest
 import pocker_hands
 
 
@@ -6,6 +7,7 @@ def test_pocker_hands_compare_highcard():
     assert pocker_hands.compare(input) == "White wins. - with high card: Ace"
 
 
+@pytest.mark.skip()
 def test_pocker_hands_compare_fullhouse():
     input = "Black: 2H 4S 4C 2D 4H  White: 2S 8S AS QS 3S"
     assert (
