@@ -1,7 +1,25 @@
 def compare(input):
     hand1, hand2 = hand_card_parser(input)
+    mapping_order = [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "J",
+        "Q",
+        "K",
+        "A",
+    ]
+    biggest_h1 = mapping_order.index(hand1["cards"][-1][0])
+    biggest_h2 = mapping_order.index(hand2["cards"][-1][0])
 
-    return f"{hand2['player']} wins. - with high card: Ace"
+    if biggest_h1 < biggest_h2:
+        return f"{hand2['player']} wins. - with high card: Ace"
 
 
 def hand_card_parser(input):
@@ -22,7 +40,8 @@ def hand_card_parser(input):
     c2 = splited_input[7:12]
 
     hand1 = {"player": p1, "cards": []}
-    hand1["cards"].append(c1)
+    hand1["cards"].extend(c1)
+
     hand2 = {"player": p2, "cards": []}
-    hand2["cards"].append(c2)
+    hand2["cards"].extend(c2)
     return hand1, hand2
