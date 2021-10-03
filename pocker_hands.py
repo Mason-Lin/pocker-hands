@@ -15,8 +15,8 @@ def compare(input):
         "K",
         "A",
     ]
-    biggest_h1 = mapping_order.index(hand1["cards"][-1][0])
-    biggest_h2 = mapping_order.index(hand2["cards"][-1][0])
+    biggest_h1 = mapping_order.index(hand1["cards"][-1][:-1])
+    biggest_h2 = mapping_order.index(hand2["cards"][-1][:-1])
 
     if biggest_h1 < biggest_h2:
         return f"{hand2['player']} wins. - with high card: Ace"
