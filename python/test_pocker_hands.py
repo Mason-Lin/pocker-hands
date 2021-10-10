@@ -41,6 +41,15 @@ def test_compare_fullhouse_5_over_3():
     )
     assert game.result() == "Black wins. - with full house: 5 over 3"
 
+def test_compare_fullhouse_two_fullhouse():
+    game = PokerGame(
+        player1="Black",
+        cards1="2S 4S 4S 2S 4S",
+        player2="White",
+        cards2="3H 5H 5H 3H 5H",
+    )
+    assert game.result() == "White wins. - with full house: 5 over 3"
+
 ################# test internal functions #########################
 
 
