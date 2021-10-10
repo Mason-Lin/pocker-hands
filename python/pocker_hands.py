@@ -81,7 +81,25 @@ class PokerGame:
         else:
             pass
 
-        if self.is_full_house(self.cards1):
+        if self.is_full_house(self.cards1) and self.is_full_house(self.cards2):
+            triple1, double1 = self.get_full_house_details(self.cards1)
+            triple2, double2 = self.get_full_house_details(self.cards2)
+            if triple1 > triple2:
+                winner = self.player1
+                reasons = f"full house: {triple1} over {double1}"
+            elif triple1 < triple2:
+                winner = self.player2
+                reasons = f"full house: {triple2} over {double2}"
+            else:
+                if double1 > double2:
+                    winner = self.player1
+                    reasons = f"full house: {triple1} over {double1}"
+                elif double1 < double2:
+                    winner = self.player2
+                    reasons = f"full house: {triple2} over {double2}"
+                else:
+                    pass
+        elif self.is_full_house(self.cards1):
             winner = self.player1
             triple, double = self.get_full_house_details(self.cards1)
             reasons = f"full house: {triple} over {double}"
