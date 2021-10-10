@@ -63,6 +63,10 @@ class PokerGame:
         suits = [card["suit"] for card in cards]
         return len(set(suits)) == 1
 
+    def get_full_house_details(self, cards):
+        numbers = sorted([card["number"] for card in cards])
+        return numbers[-1], numbers[0]
+
     def result(self):
         winner = "no one"
         reasons = "same card"
@@ -79,10 +83,12 @@ class PokerGame:
 
         if self.is_full_house(self.cards1):
             winner = self.player1
-            reasons = f"full house: 4 over 2"
+            triple, double = self.get_full_house_details(self.cards1)
+            reasons = f"full house: {triple} over {double}"
         elif self.is_full_house(self.cards2):
             winner = self.player2
-            reasons = f"full house: 4 over 2"
+            triple, double = self.get_full_house_details(self.cards2)
+            reasons = f"full house: {triple} over {double}"
         else:
             pass
 

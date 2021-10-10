@@ -22,15 +22,24 @@ def test_compare_highcard_10():
     assert game.result() == "Black wins. - with high card: 10"
 
 
-def test_compare_fullhouse():
+def test_compare_fullhouse_4_over_2():
     game = PokerGame(
         player1="Black",
-        cards1="2S 8S AS QS 3S",
+        cards1="2S 4S 4S 2S 4S",
         player2="White",
-        cards2="2H 4S 4C 2D 4H",
+        cards2="2H 6S KC 9D 8H",
     )
     assert game.result() == "Black wins. - with full house: 4 over 2"
 
+
+def test_compare_fullhouse_5_over_3():
+    game = PokerGame(
+        player1="Black",
+        cards1="3H 5H 5H 3H 5H",
+        player2="White",
+        cards2="2H 6S KC 9D 8H",
+    )
+    assert game.result() == "Black wins. - with full house: 5 over 3"
 
 ################# test internal functions #########################
 
