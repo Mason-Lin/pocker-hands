@@ -2,6 +2,16 @@ import pytest
 from pocker_hands import PokerGame
 
 
+def test_compare_same_card():
+    game = PokerGame(
+        player1="Black",
+        cards1="2H 3D 5S 7C 9D",
+        player2="White",
+        cards2="2H 3D 5S 7C 9D",
+    )
+    assert game.result() == "No one wins. - with same card"
+
+
 def test_compare_highcard():
     game = PokerGame(
         player1="Black",

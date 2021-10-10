@@ -65,10 +65,12 @@ class PokerGame:
 
     def get_full_house_details(self, cards):
         numbers = sorted([card["number"] for card in cards])
-        return numbers[-1], numbers[0]
+        triple = numbers[2]
+        double = numbers[-1] if numbers[2] == numbers[0] else numbers[0]
+        return triple, double
 
     def result(self):
-        winner = "no one"
+        winner = "No one"
         reasons = "same card"
         big1 = self.get_biggest_card(self.cards1)
         big2 = self.get_biggest_card(self.cards2)
