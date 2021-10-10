@@ -1,5 +1,7 @@
-def compare(input):
-    hand1, hand2 = hand_card_parser(input)
+import enum
+
+
+def split_to_suit_and_size(cards):
     mapping_order = [
         "2",
         "3",
@@ -15,8 +17,21 @@ def compare(input):
         "K",
         "A",
     ]
-    biggest_h1 = mapping_order.index(hand1["cards"][-1][:-1])
-    biggest_h2 = mapping_order.index(hand2["cards"][-1][:-1])
+    new_cards = []
+    for card in cards:
+        new_card = {"suit": card[-1], "size": mapping_order.index(card[:-1])}
+        new_cards.append(new_card)
+    new_cards.sort(key=lambda x: x["size"])
+    return new_cards
+
+
+def compare(input):
+    hand1, hand2 = hand_card_parser(input)
+    hand1["cards"] = split_to_suit_and_size(hand1["cards"])
+    hand2["cards"] = split_to_suit_and_size(hand2["cards"])
+
+    biggest_h1 = hand1["cards"][-1]["size"]
+    biggest_h2 = hand2["cards"][-1]["size"]
 
     if biggest_h1 < biggest_h2:
         return f"{hand2['player']} wins. - with high card: Ace"
@@ -39,9 +54,6 @@ def hand_card_parser(input):
     p2 = splited_input[6].rstrip(":")
     c2 = splited_input[7:12]
 
-    hand1 = {"player": p1, "cards": []}
-    hand1["cards"].extend(c1)
-
-    hand2 = {"player": p2, "cards": []}
-    hand2["cards"].extend(c2)
+    hand1 = {"player": p1, "cards": c1}
+    hand2 = {"player": p2, "cards": c2}
     return hand1, hand2
